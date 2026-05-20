@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    *  Copyright (C) 2002-2022  The FreeCol Team
+    *
+    *  This file is part of FreeCol.
+    *
+    *  FreeCol is free software: you can redistribute it and/or modify
+    *  it under the terms of the GNU General Public License as published by
+    *  the Free Software Foundation, either version 2 of the License, or
+    *  (at your option) any later version.
+    *
+    *  FreeCol is distributed in the hope that it will be useful,
+    *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+    *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    *  GNU General Public License for more details.
+    *
+    *  You should have received a copy of the GNU General Public License
+    *  along with FreeCol.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<freecol-specification id="nostalgization">
+
+  <unit-types>
+
+    <unit-type id="model.unit.brave"
+               offence="1" defence="1"
+               default-unit="true" movement="3" line-of-sight="1" space="1"
+               hit-points="5">
+      <required-ability id="model.ability.native"/>
+      <consumes id="model.goods.food" value="2"/>
+      <consumes id="model.goods.rum" value="1"/>
+      <consumes id="model.goods.tradeGoods" value="1"/>
+      <consumes id="model.goods.ore" value="1"/>
+      <consumes id="model.goods.silver" value="1"/>
+      <consumes id="model.goods.cigars" value="1"/>
+      <consumes id="model.goods.coats" value="1"/>
+      <consumes id="model.goods.cloth" value="1"/>
+      <ability id="model.ability.person" value="true"/>
+      <ability id="model.ability.carryGoods" value="true"/>
+      <ability id="model.ability.bornInIndianSettlement" value="true"/>
+      <ability id="model.ability.pillageUnprotectedColony" value="true"/>
+      <ability id="model.ability.captureUnits" value="false"/>
+      <ability id="model.ability.captureEquipment" value="true"/>
+      <ability id="model.ability.canBeEquipped" value="true"/>
+      <ability id="model.ability.foundColony" value="true"/>
+      <ability id="model.ability.canBeCaptured" value="true"/>
+    </unit-type>
+
+    <unit-type id="model.unit.indianCaptured"
+               skill="-1" offence="0" defence="1"
+               movement="3" line-of-sight="1"
+               maximum-attrition="8" score-value="2" hit-points="5">
+      <consumes id="model.goods.food" value="2"/>
+      <consumes id="model.goods.bells" value="1"/>
+      <ability id="model.ability.person" value="true"/>
+      <ability id="model.ability.foundColony" value="false"/>
+      <ability id="model.ability.canBeEquipped" value="false"/>
+      <modifier id="model.goods.grain"   index="30" type="additive" value="1"/>
+      <modifier id="model.goods.sugar"   index="30" type="additive" value="1"/>
+      <modifier id="model.goods.tobacco" index="30" type="additive" value="1"/>
+      <modifier id="model.goods.cotton"  index="30" type="additive" value="1"/>
+      <modifier id="model.goods.furs"    index="30" type="additive" value="1"/>
+      <modifier id="model.goods.fish"    index="30" type="additive" value="1"/>
+      <modifier id="model.goods.rum"     index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.cigars"  index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.cloth"   index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.coats"   index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.muskets" index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.bells"   index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.crosses" index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.hammers" index="30" type="additive" value="-2"/>
+      <modifier id="model.goods.tools"   index="30" type="additive" value="-2"/>
+    </unit-type>
+
+  </unit-types>
+
+  <unit-change-types>
+
+    <unit-change-type id="model.unitChange.capture" owner-change="true">
+      <unit-type-change id="model.unitChange.capture.brave"
+                        from="model.unit.brave"
+                        to="model.unit.indianCaptured"
+                        probability="5"/>
+    </unit-change-type>
+
+    <unit-change-type id="model.unitChange.experience">
+      <unit-type-change id="model.unitChange.experience.indianCaptured"
+                        from="model.unit.indianCaptured"
+                        to="model.unit.indianConvert"
+                        probability="5"/>
+    </unit-change-type>
+
+  </unit-change-types>
+
+</freecol-specification>
